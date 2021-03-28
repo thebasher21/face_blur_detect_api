@@ -8,7 +8,7 @@ build:
 	docker build -t face_blur_detect_api .
 
 run:
-	docker run --name face_blur_detect_api --network finboxnet --hostname localhost -d facecheck
+	docker run --name face_blur_detect_api --network finboxnet --hostname localhost -d face_blur_detect_api
 
 stop:
 	docker stop $(shell docker ps | grep "facecheck" | awk '{ print $$1 }')

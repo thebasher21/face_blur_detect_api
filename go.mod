@@ -1,4 +1,4 @@
-module face_blur_detect_api
+module github.com/thebasher21/face_blur_detect_api
 
 go 1.16
 

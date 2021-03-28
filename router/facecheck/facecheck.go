@@ -1,9 +1,9 @@
 package facecheck
 
 import (
-	facecheckCont "face_blur_detect_api/controller/facecheck"
-	facecheckReq "face_blur_detect_api/requestHandler/facecheck"
-	facecheckRes "face_blur_detect_api/responseHandler/facecheck"
+	facecheckCont "github.com/thebasher21/face_blur_detect_api/controller/facecheck"
+	facecheckReq "github.com/thebasher21/face_blur_detect_api/requestHandler/facecheck"
+	facecheckRes "github.com/thebasher21/face_blur_detect_api/responseHandler/facecheck"
 
 	"github.com/go-chi/chi"
 )

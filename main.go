@@ -1,9 +1,10 @@
 package main
 
 import (
-	"face_blur_detect_api/router/facecheck"
 	"log"
 	"net/http"
+
+	"github.com/thebasher21/face_blur_detect_api/router/facecheck"
 
 	"github.com/go-chi/chi"
 )
