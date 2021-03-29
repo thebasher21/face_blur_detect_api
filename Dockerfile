@@ -39,15 +39,9 @@ RUN curl -Lo opencv.zip https://github.com/opencv/opencv/archive/${OPENCV_VERSIO
             make preinstall && make install && ldconfig && \
             cd / && rm -rf opencv*
 
-WORKDIR /go/src/face_blur_detect_api
-
-COPY go.mod go.sum ./
-
-RUN go mod download 
-
-COPY . .
-
-RUN go build -o /go/bin/face_blur_detect_api ./main.go
+RUN go install -v github.com/thebasher21/face_blur_detect_api@latest
+    
+ADD classifier.xml /go
 
 EXPOSE 4312
 
