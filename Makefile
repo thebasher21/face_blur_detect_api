@@ -8,14 +8,14 @@ build:
 	docker build -t face_blur_detect_api .
 
 run:
-	docker run --name face_blur_detect_api --network finboxnet --hostname localhost -d face_blur_detect_api
+	docker run -p 4312:4312 --name face_blur_detect_api --network finboxnet --hostname localhost -d face_blur_detect_api 
 
 stop:
-	docker stop $(shell docker ps | grep "facecheck" | awk '{ print $$1 }')
+	docker stop $(shell docker ps | grep "face_blur_detect_api" | awk '{ print $$1 }')
 
 clean:
 	docker container prune
 	kill -9 $(shell lsof -t -i:4312)
 
 logs:
-	docker logs $(shell docker ps | grep 'facecheck' | awk '{ print $$1 }') -f
+	docker logs $(shell docker ps | grep 'face_blur_detect_api' | awk '{ print $$1 }') -f
