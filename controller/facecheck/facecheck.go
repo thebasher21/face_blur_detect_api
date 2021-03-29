@@ -4,12 +4,27 @@ import (
 	"context"
 	"io/ioutil"
 	"log"
+	"math"
 	"net/http"
 	"path/filepath"
 
 	cv "gocv.io/x/gocv"
-	"gonum.org/v1/gonum/stat"
 )
+
+func CalculateVariance(matrix []float64) float64 {
+	sum := 0.0
+	for _, x := range matrix {
+		sum += x
+	}
+
+	mean := sum / float64(len(matrix))
+	total := 0.0
+	for _, number := range matrix {
+		total += math.Pow(number-mean, 2)
+	}
+	variance := total / float64(len(matrix)-1)
+	return variance
+}
 
 func FaceCheckCont(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -47,7 +62,7 @@ func FaceCheckCont(next http.Handler) http.Handler {
 			panic(err)
 		}
 		//numFaces := 0
-		variance := stat.Variance(imgFloat, nil)
+		variance := CalculateVariance(imgFloat)
 		if variance <= 30 {
 			response = "Selfie is not clear"
 		} else {
